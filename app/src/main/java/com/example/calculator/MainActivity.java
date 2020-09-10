@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     boolean divLock =false;//除法锁
     boolean subLock =false;//减法锁
     boolean addLock =false;//加法锁
-    boolean pointLock =true;//小数点锁
+    boolean pointLock =true;//小数点锁...
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
