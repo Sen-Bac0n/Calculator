@@ -11,11 +11,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
-    boolean mulLock =false;//乘法锁
-    boolean divLock =false;//除法锁
-    boolean subLock =false;//减法锁
-    boolean addLock =false;//加法锁
-    boolean pointLock =true;//小数点锁...
+    boolean mulLock =true;//乘法锁
+    boolean divLock =true;//除法锁
+    boolean subLock =true;//减法锁
+    boolean addLock =true;//加法锁
+    boolean pointLock =true;//小数点锁
+    boolean lLock =false;//左括号锁
+    boolean rLock =true;//右括号锁
+    boolean leftFlag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,24 +35,25 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (button.getId()){
                         case R.id.ac:
-                            pointLock=mulLock=divLock=subLock=addLock=pointLock=false;
+                            leftFlag=lLock =mulLock=divLock=subLock=addLock=pointLock=false;
+                            rLock =pointLock=true;
                             text="";
                             textView.setText(text);
                             break;
                         case R.id.multiplication:
                             //乘法按钮
                             if(!mulLock){
-                                pointLock=mulLock=divLock=subLock=addLock=pointLock=true;
+                                rLock =pointLock=mulLock=divLock=subLock=addLock=pointLock=true;
+                                lLock =false;
                                 text+="*";
                                 textView.setText(text);
                             }
-
-
                             break;
                         case R.id.division:
                             //除法按钮
                             if(!divLock){
-                                pointLock=divLock=mulLock=subLock=addLock=true;
+                                rLock =pointLock=divLock=mulLock=subLock=addLock=true;
+                                lLock =false;
                                 text+="/";
                                 textView.setText(text);
                             }
@@ -58,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.subtraction:
                             //减法按钮
                             if(!subLock){
-                                pointLock=subLock=mulLock=divLock=addLock=true;
+                                rLock =pointLock=subLock=mulLock=divLock=addLock=true;
+                                lLock =false;
                                 text+="-";
                                 textView.setText(text);
                             }
@@ -66,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.add:
                             //加法按钮
                             if(!addLock) {
-                                pointLock=subLock = mulLock = divLock = addLock = true;
+                                rLock =pointLock=subLock = mulLock = divLock = addLock = true;
+                                lLock =false;
                                 text += "+";
                                 textView.setText(text);
                             }
@@ -74,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.point:
                             //小数点按钮
                             if(!pointLock){
-                                pointLock=subLock=mulLock=divLock=addLock=true;
+                                lLock = rLock =pointLock=subLock=mulLock=divLock=addLock=true;
                                 text+=".";
                                 textView.setText(text);
                             }
@@ -85,8 +91,29 @@ public class MainActivity extends AppCompatActivity {
                             text=dealEquation(postfix);
                             textView.setText(text);
                             break;
+                        case R.id.leftBracket:
+                            //左括号按钮
+                            if(!lLock){
+                                rLock =pointLock=subLock=mulLock=divLock=addLock= rLock =true;
+                                text+="(";
+                                textView.setText(text);
+                                leftFlag=true;
+                            }
+                            break;
+
+                        case R.id.rightBracket:
+                            //右括号按钮
+                            if(!rLock&&leftFlag){
+                                lLock =pointLock=true;
+                                subLock=mulLock=addLock=divLock=false;
+                                text+=")";
+                                textView.setText(text);
+                            }
+                            break;
+
                         default:
-                            pointLock=subLock=mulLock=divLock=addLock=false;
+                            rLock =pointLock=subLock=mulLock=divLock=addLock=false;
+                            lLock =true;
                             text+=button.getText();
                             textView.setText(text);
 
