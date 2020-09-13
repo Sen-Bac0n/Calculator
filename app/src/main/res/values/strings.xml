@@ -19,5 +19,21 @@
     <string name="equal">=</string>
     <string name="left">(</string>
     <string name="right">)</string>
+    <string name="x2">x^2</string>
+    <string name="x3">X^3</string>
+    <string name="xy">X^Y</string>
+    <string name="x_2">²√</string>
+    <string name="x_3">³√</string>
+    <string name="x_y">√</string>
+    <string name="reciprocal">1/X</string>
+    <string name="factorial">X!</string>
+    <string name="ln">ln</string>
+    <string name="lg">lg</string>
+    <string name="ex">e^x</string>
+    <string name="x_10">10^x</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+
 
 </resources>
