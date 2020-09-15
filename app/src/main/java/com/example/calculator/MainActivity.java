@@ -1,10 +1,10 @@
 package com.example.calculator;
 
+import android.content.Intent;
 import android.content.res.Configuration;
-import android.view.View;
-import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.TextView;
+import android.view.*;
+import android.widget.*;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -40,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (button.getId()) {
                         case R.id.ac:
-                            leftFlag = lLock  = false;
-                            highLock=mulLock = divLock = subLock = addLock = pointLock=rLock = pointLock = true;
+                            leftFlag = lLock = false;
+                            highLock = mulLock = divLock = subLock = addLock = pointLock = rLock = pointLock = true;
                             text = "";
                             textView.setText(text);
                             break;
                         case R.id.multiplication:
                             //乘法按钮
                             if (!mulLock) {
-                                highLock=rLock = pointLock = mulLock = divLock = subLock = addLock = pointLock = true;
+                                highLock = rLock = pointLock = mulLock = divLock = subLock = addLock = pointLock = true;
                                 lLock = false;
                                 text += "*";
                                 textView.setText(text);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.division:
                             //除法按钮
                             if (!divLock) {
-                                highLock=rLock = pointLock = divLock = mulLock = subLock = addLock = true;
+                                highLock = rLock = pointLock = divLock = mulLock = subLock = addLock = true;
                                 lLock = false;
                                 text += "/";
                                 textView.setText(text);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.subtraction:
                             //减法按钮
                             if (!subLock) {
-                                highLock=rLock = pointLock = subLock = mulLock = divLock = addLock = true;
+                                highLock = rLock = pointLock = subLock = mulLock = divLock = addLock = true;
                                 lLock = false;
                                 text += "-";
                                 textView.setText(text);
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.add:
                             //加法按钮
                             if (!addLock) {
-                                highLock=rLock = pointLock = subLock = mulLock = divLock = addLock = true;
+                                highLock = rLock = pointLock = subLock = mulLock = divLock = addLock = true;
                                 lLock = false;
                                 text += "+";
                                 textView.setText(text);
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.point:
                             //小数点按钮
                             if (!pointLock) {
-                                highLock=lLock = rLock = pointLock = subLock = mulLock = divLock = addLock = true;
+                                highLock = lLock = rLock = pointLock = subLock = mulLock = divLock = addLock = true;
                                 text += ".";
                                 textView.setText(text);
                             }
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.x2:
                             //X方
-                            if(!highLock){
+                            if (!highLock) {
                                 text = pow(Double.parseDouble(text), 2) + "";
                                 textView.setText(text);
 
@@ -125,14 +125,14 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.x3:
                             //x立方
-                            if(highLock){
+                            if (highLock) {
                                 text = pow(Double.parseDouble(text), 3) + "";
                                 textView.setText(text);
                             }
                             break;
                         case R.id.xy:
                             //x的y次方
-                            if(!highLock){
+                            if (!highLock) {
                                 text += "^";
                                 textView.setText(text);
                             }
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.x_2:
                             //平方根
-                            if(!highLock){
+                            if (!highLock) {
                                 text = sqrt(Double.parseDouble(text)) + "";
                                 textView.setText(text);
                             }
@@ -148,35 +148,37 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.x_3:
                             //立方根
-                            if(!highLock){
-                                text=pow(Double.parseDouble(text),1/3.0)+"";
+                            if (!highLock) {
+                                text = pow(Double.parseDouble(text), 1 / 3.0) + "";
                                 textView.setText(text);
                             }
 
                             break;
                         case R.id.reciprocal:
                             //倒数
-                            if(!highLock){
-                                text=1/Double.parseDouble(text)+"";
+                            if (!highLock) {
+                                text = 1 / Double.parseDouble(text) + "";
                                 textView.setText(text);
                             }
 
                             break;
                         case R.id.factorial:
                             //阶乘
-                            if(!highLock){
+                            if (!highLock) {
                                 int n = (int) Double.parseDouble(text);
                                 if ((n < 0) || (n > 17)) {
-                                    text="错误";
-                                } else if (n == 0) {
+                                    text = "错误";
+                                }
+                                else if (n == 0) {
                                     // 0!的值为1
-                                    text="1";
-                                } else {
+                                    text = "1";
+                                }
+                                else {
                                     long result = 1;
                                     for (; n > 0; n--) {
                                         result *= n;
                                     }
-                                    text=result+"";
+                                    text = result + "";
                                 }
                                 textView.setText(text);
                             }
@@ -185,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
                         case R.id.x_y:
                             //x开y次根号
-                            if(!highLock){
+                            if (!highLock) {
                                 text += "√";
                                 textView.setText(text);
                             }
@@ -193,42 +195,42 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.ln:
                             //ln
-                            if(!highLock){
-                                text=log(Double.parseDouble(text))/log(E)+"";
+                            if (!highLock) {
+                                text = log(Double.parseDouble(text)) / log(E) + "";
                                 textView.setText(text);
                             }
 
                             break;
                         case R.id.lg:
-                            if(!highLock){
-                                text=log10(Double.parseDouble(text))+"";
+                            if (!highLock) {
+                                text = log10(Double.parseDouble(text)) + "";
                                 textView.setText(text);
                             }
 
                             break;
                         case R.id.sin:
-                            if(!highLock){
-                                text=sin(toRadians(Double.parseDouble(text)))+"";
+                            if (!highLock) {
+                                text = sin(toRadians(Double.parseDouble(text))) + "";
                                 textView.setText(text);
                             }
 
                             break;
                         case R.id.cos:
-                            if(!highLock){
-                                text=cos(toRadians(Double.parseDouble(text)))+"";
+                            if (!highLock) {
+                                text = cos(toRadians(Double.parseDouble(text))) + "";
                                 textView.setText(text);
                             }
 
                             break;
                         case R.id.tan:
-                            if(!highLock){
-                                text=tan(toRadians(Double.parseDouble(text)))+"";
+                            if (!highLock) {
+                                text = tan(toRadians(Double.parseDouble(text))) + "";
                                 textView.setText(text);
                             }
 
                             break;
                         default:
-                            highLock=rLock = pointLock = subLock = mulLock = divLock = addLock = false;
+                            highLock = rLock = pointLock = subLock = mulLock = divLock = addLock = false;
                             lLock = true;
                             text += button.getText();
                             textView.setText(text);
@@ -330,8 +332,6 @@ public class MainActivity extends AppCompatActivity {
     public String dealEquation(String equation) {
         String[] arr = equation.split(",");                                    //根据, 拆分字符串
         List<String> list = new ArrayList<String>();                            //用于计算时  存储运算过程的集合【例如list中当前放置  100   20  5  /  则取出20/5 最终将结果4存入list   此时list中结果为  100  4 】
-
-
         for (int i = 0; i < arr.length; i++) {                                    //此处就是上面说的运算过程， 因为list.remove的缘故，所以取出最后一个数个最后两个数  都是size-2
             int size = list.size();
             switch (arr[i]) {
@@ -369,4 +369,31 @@ public class MainActivity extends AppCompatActivity {
         return list.size() == 1 ? list.get(0) : "运算失败";                    //最终list中仅有一个结果，否则就是算错了
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.help:
+                Toast.makeText(this, "help", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.another:
+                 intent=
+                        new Intent(MainActivity.this, AnotherActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.danwei:
+                intent=
+                        new Intent(MainActivity.this, danwei.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
 }
