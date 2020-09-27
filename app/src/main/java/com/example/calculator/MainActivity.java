@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.view.*;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     boolean rLock = true;//右括号锁
     boolean leftFlag = false;
     boolean highLock = true;//高级计算器锁
+    public static List<Activity> activityList = new LinkedList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -325,9 +327,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 将 后缀表达式 进行  运算 计算出结果
-     *
-     * @param equation
-     * @return
      */
     public String dealEquation(String equation) {
         String[] arr = equation.split(",");                                    //根据, 拆分字符串
@@ -381,19 +380,40 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.help:
-                Toast.makeText(this, "help", Toast.LENGTH_LONG).show();
+                intent = new Intent(MainActivity.this, Help.class);
+                startActivity(intent);
                 break;
             case R.id.another:
-                 intent=
+                intent =
                         new Intent(MainActivity.this, AnotherActivity.class);
                 startActivity(intent);
                 break;
             case R.id.danwei:
-                intent=
+                intent =
                         new Intent(MainActivity.this, danwei.class);
                 startActivity(intent);
                 break;
+            case R.id.tiji:
+                intent =
+                        new Intent(MainActivity.this,tiji.class);
+                startActivity(intent);
+                break;
+            case R.id.exit:
+                exit();
+                break;
         }
         return true;
+    }
+
+    public void exit() {
+
+        for (Activity act : activityList) {
+
+            act.finish();
+
+        }
+
+        System.exit(0);
+
     }
 }

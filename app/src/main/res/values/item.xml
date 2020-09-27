@@ -11,6 +11,12 @@
         <item>毫米</item>
         <item>厘米</item>
         <item>米</item>
+    </string-array>
+    <string-array name="itemstiji">
+        <item>升</item>
+        <item>毫升</item>
+        <item>立方厘米</item>
+        <item>立方米</item>
 
     </string-array>
 </resources>

@@ -176,7 +176,13 @@ public class AnotherActivity extends AppCompatActivity {
                         new Intent(AnotherActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.tiji:
 
+
+                intent =
+                        new Intent(AnotherActivity.this,tiji.class);
+                startActivity(intent);
+                break;
         }
         return true;
     }

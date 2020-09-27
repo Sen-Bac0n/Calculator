@@ -7,6 +7,6 @@
             android:id="@id/another"
             android:title="进制转换"/>
     <item
-            android:id="@+id/tiji"
-            android:title="体积换算"/>
+            android:id="@+id/danwei"
+            android:title="长度换算"/>
 </menu>

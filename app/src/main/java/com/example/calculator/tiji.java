@@ -9,27 +9,28 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class danwei extends AppCompatActivity {
-    String sp1 = "";
-    String sp2 = "";
+public class tiji extends AppCompatActivity {
+    String sp11 = "";
+    String sp22 = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_danwei);
-        Spinner spinner1 = (Spinner) findViewById(R.id.sp1);
-        Spinner spinner2 = (Spinner) findViewById(R.id.sp2);
+        setContentView(R.layout.activity_tiji);
+        Spinner spinner11 = (Spinner) findViewById(R.id.sp11);
+        Spinner spinner22 = (Spinner) findViewById(R.id.sp22);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.itemsMeter, android.R.layout.simple_spinner_item);
+                R.array.itemstiji, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter);
-        spinner2.setAdapter(adapter);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner11.setAdapter(adapter);
+        spinner22.setAdapter(adapter);
+        spinner11.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String[] changdu = getResources().getStringArray(R.array.itemsMeter);
-                sp1=changdu[i]+"";
+                String[] changdu = getResources().getStringArray(R.array.itemstiji);
+                sp11 = changdu[i] + "";
             }
 
             @Override
@@ -37,11 +38,11 @@ public class danwei extends AppCompatActivity {
 
             }
         });
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner22.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String[] changdu = getResources().getStringArray(R.array.itemsMeter);
-                sp2=changdu[i]+"";
+                String[] changdu = getResources().getStringArray(R.array.itemstiji);
+                sp22 = changdu[i] + "";
             }
 
             @Override
@@ -52,8 +53,8 @@ public class danwei extends AppCompatActivity {
         final TextView textView = findViewById(R.id.textView);
         final TextView textans = findViewById(R.id.textViewAns);
         GridLayout gridLayout = findViewById(R.id.gridLayout);
-        for(
-                int i = 4; i<gridLayout.getChildCount();i++) {
+        for (
+                int i = 4; i < gridLayout.getChildCount(); i++) {
             final Button button = findViewById(gridLayout.getChildAt(i).getId());
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -64,81 +65,83 @@ public class danwei extends AppCompatActivity {
                         case R.id.ac:
                             text = "";
                             ans = "";
-                            sp1 = sp2 = "";
+                            sp11 = sp22 = "";
                             textView.setText(text);
                             textans.setText(ans);
                             break;
-                        case R.id.ok:
-                            if(sp1=="微米"){
-                                switch (sp2){
-                                    case "微米":
+                        case R.id.okk:
+
+                            if (sp11.equals("升")) {
+                                switch (sp22) {
+                                    case "升":
                                         textans.setText(text);
                                         break;
-                                    case "毫米":
-                                        ans=""+Double.parseDouble(text)*0.001;
-                                        textans.setText(ans);
-                                        break;
-                                    case "厘米":
-                                        ans=""+Double.parseDouble(text)*0.0001;
-                                        textans.setText(ans);
-                                        break;
-                                    case "米":
-                                        ans=""+Double.parseDouble(text)*0.000001;
-                                        textans.setText(ans);
-                                        break;
-                                }
-                            }else if(sp1=="毫米"){
-                                switch (sp2){
-                                    case "微米":
-                                        ans=""+Double.parseDouble(text)*1000;
-                                        textans.setText(ans);
-                                        break;
-                                    case "毫米":
-                                        textans.setText(text);
-                                        break;
-                                    case "厘米":
-                                        ans=""+Double.parseDouble(text)*0.1;
-                                        textans.setText(ans);
-                                        break;
-                                    case "米":
-                                        ans=""+Double.parseDouble(text)*0.001;
-                                        textans.setText(ans);
-                                        break;
-                                }
-                            }else if(sp1=="厘米") {
-                                switch (sp2) {
-                                    case "微米":
-                                        ans = "" + Double.parseDouble(text) * 10000;
-                                        textans.setText(ans);
-                                        break;
-                                    case "毫米":
-                                        ans = "" + Double.parseDouble(text) * 10;
-                                        textans.setText(ans);
-                                        break;
-                                    case "厘米":
-                                        textans.setText(text);
-                                        break;
-                                    case "米":
-                                        ans = "" + Double.parseDouble(text) * 0.01;
-                                        textans.setText(ans);
-                                        break;
-                                }
-                            }else{
-                                switch (sp2) {
-                                    case "微米":
-                                        ans = "" + Double.parseDouble(text) * 1000000;
-                                        textans.setText(ans);
-                                        break;
-                                    case "毫米":
+                                    case "毫升":
                                         ans = "" + Double.parseDouble(text) * 1000;
                                         textans.setText(ans);
                                         break;
-                                    case "厘米":
-                                        ans = "" + Double.parseDouble(text) * 100;
+                                    case "立方厘米":
+                                        ans = "" + Double.parseDouble(text) * 1000;
                                         textans.setText(ans);
                                         break;
-                                    case "米":
+                                    case "立方米":
+                                        ans = "" + Double.parseDouble(text) * 1;
+                                        textans.setText(ans);
+                                        break;
+                                }
+                            }else if(sp11=="毫升"){
+                                switch (sp22) {
+                                    case "升":
+                                        ans = "" + Double.parseDouble(text) * 0.001;
+                                        textans.setText(ans);
+                                        break;
+                                    case "毫升":
                                         textans.setText(text);
+                                        break;
+                                    case "立方厘米":
+                                        ans = "" + Double.parseDouble(text) * 1;
+                                        textans.setText(ans);
+                                        break;
+                                    case "立方米":
+                                        ans = "" + Double.parseDouble(text) * 0.001;
+                                        textans.setText(ans);
+                                        break;
+                                }
+                            }else if(sp11=="立方厘米"){
+                                switch (sp22) {
+                                    case "升":
+                                        ans = "" + Double.parseDouble(text) * 0.001;
+                                        textans.setText(ans);
+                                        break;
+                                    case "毫升":
+                                        textans.setText(text);
+                                        break;
+                                    case "立方厘米":
+                                        ans = "" + Double.parseDouble(text) * 1;
+                                        textans.setText(ans);
+                                        break;
+                                    case "立方米":
+                                        ans = "" + Double.parseDouble(text) * 0.001;
+                                        textans.setText(ans);
+                                        break;
+                                }
+                            }else if(sp11=="立方米"){
+                                switch (sp22) {
+                                    case "升":
+                                        ans = "" + Double.parseDouble(text) ;
+                                        textans.setText(ans);
+                                        break;
+                                    case "毫升":
+                                        ans = "" + Double.parseDouble(text)*1000 ;
+                                        textans.setText(ans);
+                                        break;
+                                    case "立方厘米":
+                                        ans = "" + Double.parseDouble(text) * 1000;
+                                        textans.setText(ans);
+                                        break;
+                                    case "立方米":
+                                        ans = "" + Double.parseDouble(text) ;
+                                        textans.setText(ans);
                                         break;
                                 }
                             }
@@ -153,7 +156,7 @@ public class danwei extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.another, menu);
+        getMenuInflater().inflate(R.menu.tiji, menu);
         return true;
     }
 
@@ -164,17 +167,17 @@ public class danwei extends AppCompatActivity {
 
             case R.id.backmain:
                 intent =
-                        new Intent(danwei.this, MainActivity.class);
+                        new Intent(tiji.this, MainActivity.class);
                 startActivity(intent);
                 break;
             case R.id.another:
                 intent =
-                        new Intent(danwei.this, AnotherActivity.class);
+                        new Intent(tiji.this, AnotherActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.tiji:
+            case R.id.danwei:
                 intent =
-                        new Intent(danwei.this,tiji.class);
+                        new Intent(tiji.this, danwei.class);
                 startActivity(intent);
                 break;
         }
